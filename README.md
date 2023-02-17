@@ -22,8 +22,8 @@ Mynx is in a very pre-alpha state, but if you would like to try it out this is t
     2. $ `npm i`
     2. $ `vite`
     3. Open the url in a browser.
-4. Read [learn-mynx.md](https://github.com/monode-dev/hello-mynx/main/learn-mynx.md).
+4. Read [learn-mynx.md](https://github.com/monode-dev/hello-mynx/blob/main/learn-mynx.md).
 3. Start coding, the Mynx extension will automatically compile any .mx files whether you want it to or not.
 
 ## Getting Started
-Read [learn-mynx.md](https://github.com/monode-dev/hello-mynx/main/learn-mynx.md).
+Read [learn-mynx.md](https://github.com/monode-dev/hello-mynx/blob/main/learn-mynx.md).

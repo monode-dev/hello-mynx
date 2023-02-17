@@ -19,6 +19,7 @@ This repository serves as a starting place for using the Mynx programming langua
 3. Open the folder in vscode.
 3. Run the app.
     1. $ `cd ./builds/website`
+    2. $ `npm i`
     2. $ `vite`
     3. Open the url in a browser.
 3. Start coding, the Mynx extension will automatically compile any .mx files whether you want it to or not.

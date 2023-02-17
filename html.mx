@@ -1,0 +1,108 @@
+js"console.log(mx_wantLit(`Hello World`));"
+constructHtmlElement[
+  role:- "div"
+  onClick: []: ()
+  style: unstyledCss
+  { children: [] }
+]: JsObj !<< (
+  { # We need to pass a non-reactive object to ".appendChild". }
+  js"let newElement = document.createElement(`div`)"
+
+  { # Element }
+  js"newElement.onclick = onClick"
+  { newElement.role <= role }
+  js"mx_watchWrite(
+    role,
+    (value) => {
+      newElement.role = value;
+    },
+  );"
+
+  { # Style }
+  { for propVal propKey in style (
+    newElement.style.[propKey] <= style.[propKey]
+  ) }
+  js"for (let [propKey, propVal] of Object.entries(mx_wantLit(style))) {
+    mx_watchWrite(
+      style[propKey],
+      (value) => {
+        newElement.style[propKey] = value;
+      },
+    );
+  }"
+
+  { # Children }
+ { js"mx_doOnChange(
+    actionToDo: () => }{
+      // Remove previous children
+      while (newElement.firstChild)} {
+        newElement.removeChild(newElement.firstChild);
+      }
+{
+      //Add new children
+      for (let child of mx_wantLit(children))} {
+        newElement.appendChild(mx_wantLit(child));
+      }
+    {}{,
+    triggers: [children?.mx_onChange],
+  );"}
+  
+  js"return newElement;"
+)
+
+colors: [
+  white:- "#ffffffff"
+  almostWhite:- "#f9fafdff"
+  pink:- "#e91e63ff"
+  red:- "#f44336ff"
+  orange:- "#ff9800ff"
+  yellow:- "#ffea00ff"
+  green:- "#4caf50ff"
+  teal:- "#009688ff"
+  blue:- "#2196f3ff"
+  purple:- "#9c27b0ff"
+  brown:- "#795548ff"
+  grey:- "#9e9e9eff"
+  black:- "#000000ff"
+  transparent:- "#ffffff00"
+]
+
+unstyledCss:- [
+  display :- ""
+  boxSizing :- ""
+  width :- ""
+  minWidth :- ""
+  maxWidth :- ""
+  height :- ""
+  minHeight :- ""
+  maxHeight :- ""
+  flexBasis :- ""
+  borderRadius :- ""
+  {border: "none"}
+  outline :- ""
+  outlineOffset :- ""
+  backgroundColor :- ""
+  boxShadow :- ""
+  {Padding}
+  padding :- ""
+  position :- ""
+  {margin :- ""}
+  justifyContent :- ""
+  alignItems :- ""
+  flexDirection :- ""
+  flexWrap :- ""
+  overflowX :- ""
+  overflowY :- ""
+  scrollbarWidth :- ""
+  scrollbarColor :- ""
+  rowGap :- ""
+  columnGap :- ""
+  fontFamily :- ""
+  fontSize :- ""
+  fontWeight :- ""
+  fontStyle :- ""
+  textDecoration :- ""
+  textAlign :- ""
+  color:- ""
+]
+CssStyle: unstyledCss

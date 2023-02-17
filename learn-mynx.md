@@ -180,6 +180,21 @@ johnIsAnElf = john is Elf
 
 _We'll probably use the `distinct` keyword to allow types to be checkd by type name rather than object "shape"._
 
+## Embeding JavaScript
+
+JavaScript statments can be embeded in the language like so:
+
+```Mynx
+js"console.log('Hello World')"
+```
+
+Use `mx_wantLit(...)` to convert reactive variables into js literals.
+
+```Mynx
+foo: 42
+js"console.log(mx_wantLit(foo))"
+```
+
 ## Code Blocks & Functions
 
 ### Code Blocks

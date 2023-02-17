@@ -15,12 +15,12 @@ This repository serves as a starting place for using the Mynx programming langua
 1. Ensure [npm](https://nodejs.org/en/download/), [vscode](https://code.visualstudio.com/), and [vite](https://vitejs.dev/guide/) are installed on your computer.
 1. Fork this repository.
 2. Install the included vscode extension.
-  1. $ `code mynx.vse`
+    1. $ `code mynx.vse`
 3. Open the folder in vscode.
 3. Run the app.
-  1. $ `cd ./builds/website`
-  2. $ `vite
-  3. Open the url in a browser.
+    1. $ `cd ./builds/website`
+    2. $ `vite`
+    3. Open the url in a browser.
 3. Start coding, the Mynx extension will automatically compile any .mx files whether you want it to or not.
 4. Read *[Getting Started](#getting-started)
 

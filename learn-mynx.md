@@ -1,6 +1,6 @@
 # Learn Mynx
 
-This document serves as my best guesses of what Mynx will become. The language isn't quite here yet and the syntax will change a lot, but it's a starting point.
+This document serves as my best guesses of what Mynx will become. The language isn't quite here yet and the syntax will change a lot, but it's a starting point. There are also a lot of things that haven't mad it into this document yet. For example, I haven't touched on async, error handling, persistance levels(session, device, cloud), and a whole lot of other things. These will all come in time.
 
 ## Comments
 
@@ -91,7 +91,7 @@ _At some point I'll need to write about ordered vs keyed properties, but I'll do
 
 ### Variants
 
-Object variants inherit, by reference, all the properties of the source object, but with some overrides. Variants can be created like so.
+Object variants inherit, all the properties of the source object, but with some overrides. Variants can be created like so.
 
 ```Mynx
 primaryColor: "red"
@@ -109,15 +109,122 @@ primaryColor = "green" { `background` will change for both `uiBox` and `myBox` }
 
 _Variants may seem a bit odd, and there may be some sharp edges to them, but they are super useful for UIs. Their implementation will probably change with time._
 
+_I don't know whether we want to do variants by reference or not. This is something I'll have to think about._
+
 ## Object Types
 
+Object types are just unspecific objects that can be used as a template for other objects. All types must start with a capital letter.
+
+```Mynx
+Person: [
+  name: Text
+  birthDate: DateTime
+
+  { Type props can have default values. }
+  likesLegos: true
+
+  { Type props can be formulas. }
+  age: DateTime.now - birthDate
+]
+```
+
+Objects construction is just like creating a variant.
+
+```Mynx
+john: Person[
+  { All props without default values must be specified. }
+  name: "John Doe"
+  birthDate: DateTime.now
+
+  { Type props with default values can be overridden. }
+  likesLegos: false { But who doesn't? }
+]
+```
+
+Object types can be partial variants of other types:
+
+```Mynx
+Car: [
+  manufacturer: Text
+  make: Text
+  model: Num
+  vin: Num
+]
+
+Honda: Car[
+  manufacturer: "Honda"
+]
+```
+
+Object types can be composed like so:
+
+```Mynx
+Ent: Human & Tree
+```
+
+Using both partial variants and composition we can mimic inheritance:
+
+```Mynx
+Elf: Human[
+  ears: "pointy"
+] & [
+  magicLevel: Num
+]
+```
+
+The `is` keyword can be used to check if an object is an instance of a type. Type comparison is done by "shape" rather than by type name.
+
+```Mynx
+johnIsAnElf = john is Elf
+```
+
+_We'll probably use the `distinct` keyword to allow types to be checkd by type name rather than object "shape"._
+
 ## Code Blocks & Functions
+
+### Code Blocks
+
+Code blocks are just a special kind of expression.
+
+```Mynx
+fullName: (
+  firstName: "John"
+  lastName: "Doe"
+  return "{firstName} {lastName}"
+)
+```
+
+If the last line of a code block is an expresion, it is returned automatically
+
+```Mynx
+fullName: (
+  firstName: "John"
+  lastName: "Doe"
+  "{firstName} {lastName}"
+)
+```
+
+This makes parentheses just a subset of code blocks.
+
+```Mynx
+x: 2 * (y + 1)
+```
+
+_We probably want to handle code blocks with side-effects(actions), and codeblocks that simply compute a value(formulas) differently than each other. Once again, I'll have to think through this and write more about it in future. It's worth noting now that I think some actions need to return a value(like when allocating a new ID), but we don't want to let devs shoot themselves in the foot by bluring back and forth between actions and formulas._
+
+_I want a simpler, catchier term than "so devs don't shoot themselves in the foot" since do a lot of things for this reason, but I haven't found one yet._
+
+_I've been debating making return only work from the current clode block, not from the function. `a: ( return if b ( return c ) else ( return d ) )` When used with last-line return it might make the language more readble. There is a lot of nuance here that I can't write about yet. Trust me if we decide to try this we will think about it a lot firs and come up with a good solution._
+
+### Functions
 
 Functions can be declared like so.
 
 ```Mynx
 addOne[x: Num]: x + 1
 ```
+
+_I had considered allowing functions to be declared like `foo: []: ()`, but maybe I'll wait on mutable functions for a while. At least until I better understand how I want to implement them._
 
 They can be invoked like so.
 
@@ -139,5 +246,3 @@ print[msg: Text, shouldWarn: false]: (
   )
 )
 ```
-
-_I had considered allowing functions to be declared like `foo: []: ()`, but maybe I'll wait on mutable functions for a while. At least until I better understand how I want to implement them._

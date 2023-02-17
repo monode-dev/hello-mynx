@@ -22,8 +22,8 @@ This repository serves as a starting place for using the Mynx programming langua
     2. $ `npm i`
     2. $ `vite`
     3. Open the url in a browser.
+4. Read *[Getting Started](#getting-started)*
 3. Start coding, the Mynx extension will automatically compile any .mx files whether you want it to or not.
-4. Read *[Getting Started](#getting-started)
 
 ## Getting Started
 Read [learn-mynx.md](https://github.com/monode-dev/hello-mynx/edit/main/learn-mynx.md).

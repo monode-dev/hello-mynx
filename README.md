@@ -2,14 +2,14 @@
 This repository serves as a starting place for using the Mynx programming language. I'll try to regularly push updates to it and the included .vse(vscode extension).
 
 ## "Big" Problems
-- [ ] A lot of mising intelisense.
-- [ ] No logical operators. (or, and, not)
-- [ ] No comparison operators. (<, <=, ==, >=, >)
-- [ ] No iterables. (Map, List)
-- [ ] No loops.
-- [ ] No map-to. (map val in list to result: 0 (...))
-- [ ] Functions cannot be called without being assigned to a variable.
-- [ ] And many more that I will add as I find them.
+- ! A lot of mising intelisense.
+- ! No logical operators. (or, and, not)
+- ! No comparison operators. (<, <=, ==, >=, >)
+- ! No iterables. (Map, List)
+- ! No loops.
+- ! No map-to. (map val in list to result: 0 (...))
+- ! Functions cannot be called without being assigned to a variable.
+- ! And many more that I will add as I find them.
 
 ## Setup
 1. Ensure [npm](https://nodejs.org/en/download/), [vscode](https://code.visualstudio.com/), and [vite](https://vitejs.dev/guide/) are installed on your computer.

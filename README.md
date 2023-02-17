@@ -1,5 +1,5 @@
 # Hello Mynx (Pre-Alpha)
-This repository serves as a starting place for using the Mynx programming language. I'll try to regularly push updates to it and the included .vse(vscode extension).
+Mynx is in a very pre-alpha state, but if you would like to try it out this is the place to be. I'll shoot to almost daily update the vscode extension installer in this repository.
 
 ## "Big" Problems
 - ! - A lot of mising intelisense.
@@ -15,7 +15,7 @@ This repository serves as a starting place for using the Mynx programming langua
 1. Ensure [npm](https://nodejs.org/en/download/), [vscode](https://code.visualstudio.com/), and [vite](https://vitejs.dev/guide/) are installed on your computer.
 1. Fork this repository.
 2. Install the included vscode extension.
-    1. $ `code mynx.vse`
+    1. $ `code --install-extension ./Mynx-0.0.1.vsix`
 3. Open the folder in vscode.
 3. Run the app.
     1. $ `cd ./builds/website`

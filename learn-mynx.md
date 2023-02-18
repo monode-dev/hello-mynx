@@ -7,10 +7,10 @@ This document serves as my best guesses of what Mynx will become. The language i
 Currently only multi-line comments exist, and are written like so:
 
 ```Mynx
-{ I am a comment. }
+\ I am a comment. \
 ```
 
-_To be honest, I hate this syntax, but I want to be able to include markdown in comments,and haven't found a better solutions. I am open to suggestions._
+_I'm not perfectly happy with `\...\` for comments, but it's good enough for now._
 
 ## Variables
 
@@ -19,9 +19,9 @@ _To be honest, I hate this syntax, but I want to be able to include markdown in 
 Variables can be declared like so:
 
 ```Mynx
-foo:= 1 { Explicitly mutable. }
-bar:- false { Explicitly immutable. }
-naz: "Lorem ipsom." { Let the compiler guess. }
+foo:= 1 \ Explicitly mutable. \
+bar:- false \ Explicitly immutable. \
+naz: "Lorem ipsom." \ Let the compiler guess. \
 ```
 
 As a general rule, all variables(both mutable and immutable) are reactive, and can be subscribed to.
@@ -42,8 +42,8 @@ Expressions exist and are reactive as well.
 
 ```Mynx
 x: 1
-y: 2 * x { `y` equals 2 }
-x = 5 { `y` now equals 10 }
+y: 2 * x \ `y` equals 2 \
+x = 5 \ `y` now equals 10 \
 ```
 
 Also, the compiler will assume that `x` is mutable and `y` is immutable. Using `:=` will make `y` copy the value of `2 * x` and use it to initialize `y` as a new mutable variable.
@@ -51,7 +51,7 @@ Also, the compiler will assume that `x` is mutable and `y` is immutable. Using `
 ```Mynx
 x: 1
 y:= 2 * x
-x = 5 { `y` remains unchanged }
+x = 5 \ `y` remains unchanged \
 ```
 
 _I'm debating requiring the `copy` keyword when discarding dependencies like so `y:= copy 2 _ x`, but I'm not sold on that idea yet.\_
@@ -68,12 +68,12 @@ myCar: [
   make: "Civic"
   model: 2004
 
-  {Properties behave pretty much just like other variables.}
+  \Properties behave pretty much just like other variables.\
   licensePlate:= "ABC-123"
   vin:- 1234
 
-  {Properties can reference siblings}
-  asText: "{manufacturer} {make} {model}"
+  \Properties can reference siblings\
+  asText: "\manufacturer\ \make\ \model\"
 ]
 ```
 
@@ -104,7 +104,7 @@ myBox: uiBox[
   width: 50
   height: 50
 ]
-primaryColor = "green" { `background` will change for both `uiBox` and `myBox` }
+primaryColor = "green" \ `background` will change for both `uiBox` and `myBox` \
 ```
 
 _Variants may seem a bit odd, and there may be some sharp edges to them, but they are super useful for UIs. Their implementation will probably change with time._
@@ -120,10 +120,10 @@ Person: [
   name: Text
   birthDate: DateTime
 
-  { Type props can have default values. }
+  \ Type props can have default values. \
   likesLegos: true
 
-  { Type props can be formulas. }
+  \ Type props can be formulas. \
   age: DateTime.now - birthDate
 ]
 ```
@@ -132,12 +132,12 @@ Objects construction is just like creating a variant.
 
 ```Mynx
 john: Person[
-  { All props without default values must be specified. }
+  \ All props without default values must be specified. \
   name: "John Doe"
   birthDate: DateTime.now
 
-  { Type props with default values can be overridden. }
-  likesLegos: false { But who doesn't? }
+  \ Type props with default values can be overridden. \
+  likesLegos: false \ But who doesn't? \
 ]
 ```
 
@@ -205,7 +205,7 @@ Code blocks are just a special kind of expression.
 fullName: (
   firstName: "John"
   lastName: "Doe"
-  return "{firstName} {lastName}"
+  return "\firstName\ \lastName\"
 )
 ```
 
@@ -215,7 +215,7 @@ If the last line of a code block is an expresion, it is returned automatically
 fullName: (
   firstName: "John"
   lastName: "Doe"
-  "{firstName} {lastName}"
+  "\firstName\ \lastName\"
 )
 ```
 

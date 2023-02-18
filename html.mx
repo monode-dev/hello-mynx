@@ -3,14 +3,14 @@ constructHtmlElement[
   role:- "div"
   onClick: []: ()
   style: unstyledCss
-  { children: [] }
+  \children: [] \
 ]: JsObj !<< (
-  { # We need to pass a non-reactive object to ".appendChild". }
+  \ We need to pass a non-reactive object to ".appendChild". \
   js"let newElement = document.createElement(`div`)"
 
-  { # Element }
+  \ Element \
   js"newElement.onclick = onClick"
-  { newElement.role <= role }
+  \ newElement.role <= role \
   js"mx_watchWrite(
     role,
     (value) => {
@@ -18,10 +18,7 @@ constructHtmlElement[
     },
   );"
 
-  { # Style }
-  { for propVal propKey in style (
-    newElement.style.[propKey] <= style.[propKey]
-  ) }
+  \ Style \
   js"for (let [propKey, propVal] of Object.entries(mx_wantLit(style))) {
     mx_watchWrite(
       style[propKey],
@@ -31,21 +28,20 @@ constructHtmlElement[
     );
   }"
 
-  { # Children }
- { js"mx_doOnChange(
-    actionToDo: () => }{
+  \ Children \
+  \ js"mx_doOnChange(
+    actionToDo: () => {
       // Remove previous children
-      while (newElement.firstChild)} {
+      while (newElement.firstChild) {
         newElement.removeChild(newElement.firstChild);
       }
-{
       //Add new children
-      for (let child of mx_wantLit(children))} {
+      for (let child of mx_wantLit(children)) {
         newElement.appendChild(mx_wantLit(child));
       }
-    {}{,
+    },
     triggers: [children?.mx_onChange],
-  );"}
+  );" \
   
   js"return newElement;"
 )
@@ -78,15 +74,15 @@ unstyledCss:- [
   maxHeight :- ""
   flexBasis :- ""
   borderRadius :- ""
-  {border: "none"}
+  \ border: "none" \
   outline :- ""
   outlineOffset :- ""
   backgroundColor :- ""
   boxShadow :- ""
-  {Padding}
+  \ Padding \
   padding :- ""
   position :- ""
-  {margin :- ""}
+  \ margin :- "" \
   justifyContent :- ""
   alignItems :- ""
   flexDirection :- ""

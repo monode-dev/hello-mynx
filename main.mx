@@ -1,4 +1,4 @@
-{ Declare a mutable variable. }
+\ Declare a mutable variable. \
 background:= colors.yellow
 clickCount: 0
 
@@ -6,11 +6,11 @@ element: constructHtmlElement[
   style: CssStyle[
     width: "500px"
     height: "500px"
-    { backgroundColor will listen to changes to background. }
+    \ backgroundColor will listen to changes to background. \
     backgroundColor: background
   ]
   onClick: []: (
-    { Change the packground color}
+    \ Change the packground color. \
     if (not clickCount >= 7) (
       if (background == colors.green) (
         background = colors.pink
@@ -28,5 +28,5 @@ element: constructHtmlElement[
   )
 ]
 
-{ JS is required to make somethings work. }
+\ JS is required to make somethings work. \
 js"document.body.appendChild(mx_wantLit(element));"

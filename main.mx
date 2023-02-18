@@ -1,5 +1,6 @@
 { Declare a mutable variable. }
 background:= colors.yellow
+clickCount: 0
 
 element: constructHtmlElement[
   style: CssStyle[
@@ -10,7 +11,20 @@ element: constructHtmlElement[
   ]
   onClick: []: (
     { Change the packground color}
-    background = colors.green
+    if (not clickCount >= 7) (
+      if (background == colors.green) (
+        background = colors.pink
+      ) else (
+        background = colors.green
+      )
+    ) else (
+      if (background == colors.yellow) (
+        background = colors.blue
+      ) else (
+        background = colors.yellow
+      )
+    )
+    clickCount = clickCount + 1
   )
 ]
 

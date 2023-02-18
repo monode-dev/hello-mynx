@@ -18,12 +18,26 @@ import {
 } from "./mx_core.js";
 import { colors, constructHtmlElement, CssStyle } from "./html.js";
 export const background = Mx_Var.ofVal(colors.yellow);
+export const clickCount = Mx_Var.ofVal(0);
 export const element = constructHtmlElement(
   (() => {
     const role = "div";
     const onClick = function (mx_params) {
       return (() => {
-        background.mx_write(colors.green);
+        if (!(mx_wantLit(clickCount) >= 7)) {
+          if (mx_wantLit(background) === colors.green) {
+            background.mx_write(colors.pink);
+          } else {
+            background.mx_write(colors.green);
+          }
+        } else {
+          if (mx_wantLit(background) === colors.yellow) {
+            background.mx_write(colors.blue);
+          } else {
+            background.mx_write(colors.yellow);
+          }
+        }
+        clickCount.mx_write(mx_wantLit(clickCount) + 1);
       })();
     };
     const style = mx_variantOf(

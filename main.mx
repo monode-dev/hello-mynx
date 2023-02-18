@@ -1,7 +1,7 @@
 clickCount: 0
 shouldSwapColors: clickCount < 4
-colorA: if (shouldSwapColors) colors.yellow else colors.green
-colorB: if (shouldSwapColors) colors.blue else colors.pink
+colorA: if(shouldSwapColors)colors.yellow else colors.green
+colorB: if(shouldSwapColors)colors.blue else colors.pink
 background:= colorA
 
 element: constructHtmlElement[
@@ -11,11 +11,11 @@ element: constructHtmlElement[
     \ backgroundColor will listen to changes to background. \
     backgroundColor: background
   ]
-  onClick: []: (
-    \ Change the packground color. \
-    background = if (background == colorA) colorB else colorA
-    clickCount = clickCount + 1
-  )
+  onClick:[]:(
+  \ Change the packground color. \
+  background = if(background == colorA)colorB else colorA
+  clickCount = clickCount + 1
+)
 ]
 
 \ JS is required to make somethings work. \

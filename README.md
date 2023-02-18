@@ -3,6 +3,7 @@ Mynx is in a very pre-alpha state, but if you would like to try it out this is t
 
 ## "Big" Problems
 - ! - A lot of mising intelisense.
+- ! - Auto-format is broken.
 - ! - No iterables. (Map, List)
 - ! - No loops.
 - ! - No map-to. (map val in list to result: 0 (...))

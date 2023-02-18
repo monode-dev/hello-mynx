@@ -18,18 +18,22 @@ import {
 } from "./mx_core.js";
 import { colors, constructHtmlElement, CssStyle } from "./html.js";
 export const clickCount = Mx_Var.ofVal(0);
-export const colorA = mx_expr([clickCount], (mx_exprParams) =>
+export const shouldSwapColors = mx_expr(
+  [clickCount],
+  (mx_exprParams) => mx_exprParams[0] < 4,
+);
+export const colorA = mx_expr([shouldSwapColors], (mx_exprParams) =>
   (() => {
-    if (mx_exprParams[0] < 7) {
+    if (mx_exprParams[0]) {
       return colors.yellow;
     } else {
       return colors.green;
     }
   })(),
 );
-export const colorB = mx_expr([clickCount], (mx_exprParams) =>
+export const colorB = mx_expr([shouldSwapColors], (mx_exprParams) =>
   (() => {
-    if (mx_exprParams[0] < 7) {
+    if (mx_exprParams[0]) {
       return colors.blue;
     } else {
       return colors.pink;

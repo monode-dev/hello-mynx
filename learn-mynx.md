@@ -73,7 +73,7 @@ myCar: [
   vin:- 1234
 
   \Properties can reference siblings\
-  asText: "\manufacturer\ \make\ \model\"
+  asText: "{manufacturer} {make} {model}"
 ]
 ```
 
@@ -199,23 +199,13 @@ js"console.log(mx_wantLit(foo))"
 
 ### Code Blocks
 
-Code blocks are just a special kind of expression.
+Code blocks are expresions. They wrap a block of statements. The last line may be an expression, which is returned.
 
 ```Mynx
 fullName: (
   firstName: "John"
   lastName: "Doe"
-  return "\firstName\ \lastName\"
-)
-```
-
-If the last line of a code block is an expresion, it is returned automatically
-
-```Mynx
-fullName: (
-  firstName: "John"
-  lastName: "Doe"
-  "\firstName\ \lastName\"
+  "{firstName} {lastName}"
 )
 ```
 
@@ -225,11 +215,19 @@ This makes parentheses just a subset of code blocks.
 x: 2 * (y + 1)
 ```
 
+Until we implement `result` this means that only the last line of a code block can return.
+
+```Mynx
+color: (
+  red: "red"
+  blue: "blue"
+  if (isRed) red else blue
+)
+```
+
 _We probably want to handle code blocks with side-effects(actions), and codeblocks that simply compute a value(formulas) differently than each other. Once again, I'll have to think through this and write more about it in future. It's worth noting now that I think some actions need to return a value(like when allocating a new ID), but we don't want to let devs shoot themselves in the foot by bluring back and forth between actions and formulas._
 
 _I want a simpler, catchier term than "so devs don't shoot themselves in the foot" since do a lot of things for this reason, but I haven't found one yet._
-
-_I've been debating making return only work from the current clode block, not from the function. `a: ( return if b ( return c ) else ( return d ) )` When used with last-line return it might make the language more readble. There is a lot of nuance here that I can't write about yet. Trust me if we decide to try this we will think about it a lot firs and come up with a good solution._
 
 ### Functions
 

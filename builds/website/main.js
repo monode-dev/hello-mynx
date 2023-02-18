@@ -17,26 +17,40 @@ import {
   watchPrint,
 } from "./mx_core.js";
 import { colors, constructHtmlElement, CssStyle } from "./html.js";
-export const background = Mx_Var.ofVal(colors.yellow);
 export const clickCount = Mx_Var.ofVal(0);
+export const colorA = mx_expr([clickCount], (mx_exprParams) =>
+  (() => {
+    if (mx_exprParams[0] < 7) {
+      return colors.yellow;
+    } else {
+      return colors.green;
+    }
+  })(),
+);
+export const colorB = mx_expr([clickCount], (mx_exprParams) =>
+  (() => {
+    if (mx_exprParams[0] < 7) {
+      return colors.blue;
+    } else {
+      return colors.pink;
+    }
+  })(),
+);
+export const background = Mx_Var.ofVal(mx_wantLit(colorA));
 export const element = constructHtmlElement(
   (() => {
     const role = "div";
     const onClick = function (mx_params) {
       return (() => {
-        if (!(mx_wantLit(clickCount) >= 7)) {
-          if (mx_wantLit(background) === colors.green) {
-            background.mx_write(colors.pink);
-          } else {
-            background.mx_write(colors.green);
-          }
-        } else {
-          if (mx_wantLit(background) === colors.yellow) {
-            background.mx_write(colors.blue);
-          } else {
-            background.mx_write(colors.yellow);
-          }
-        }
+        background.mx_write(
+          (() => {
+            if (mx_wantLit(background) === mx_wantLit(colorA)) {
+              return mx_wantLit(colorB);
+            } else {
+              return mx_wantLit(colorA);
+            }
+          })(),
+        );
         clickCount.mx_write(mx_wantLit(clickCount) + 1);
       })();
     };

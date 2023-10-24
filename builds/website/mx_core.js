@@ -159,13 +159,13 @@ export function mx_expr(params, compute) {
         mx_onChange.trigger();
       }
       haveCachedVal = true;
-    } catch (e) { }
+    } catch (e) {}
   };
   params.forEach((param) =>
     param?.mx_onChange?.addSubscriber?.(tryUpdateCachedVal),
   );
   return Mx_Var.fromFuncs({
-    mx_write: () => { },
+    mx_write: () => {},
     mx_read: () => {
       // Lazy load the cached value
       if (!haveCachedVal) {

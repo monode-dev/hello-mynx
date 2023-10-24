@@ -1,0 +1,23 @@
+{
+  "cloud": {
+    "id": "cloud",
+    "name": "Cloud",
+    "x": 200,
+    "y": 100,
+    "code": ""
+  },
+  "device": {
+    "id": "device",
+    "name": "Device",
+    "x": 200,
+    "y": 300,
+    "code": ""
+  },
+  "session": {
+    "id": "session",
+    "name": "Session",
+    "x": 200,
+    "y": 500,
+    "code": ""
+  }
+}

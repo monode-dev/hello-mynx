@@ -259,3 +259,19 @@ print[msg: Text, shouldWarn: false]: (
   )
 )
 ```
+
+
+## Ideas
+Ideas we might add.
+
+### Adding Props to existing objects.
+
+You should be able to add props to existing objects via `:=`
+
+```mx
+myObj: {}
+\ Not Okay \
+myObj.newProp = 0
+\ Okay \
+myObj.newProp := 0
+```
